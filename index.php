@@ -27,7 +27,7 @@ error_reporting(E_ALL);
    <fieldset>
     <legend>アカウント</legend>
      <label>名前 or Email：<input type="text" name="passNm"></label><br>
-     <label>password：<input type="text" name="pw"></label><br>
+     <label>password：<input type="password" name="pw"></label><br>
      <input type="submit" value="送信">
     </fieldset>
   </div>
@@ -40,7 +40,7 @@ error_reporting(E_ALL);
     <legend>アカウントお持ちでない方</legend>
      <label>名前：<input type="text" name="name"></label><br>
      <label>Email：<input type="text" name="email"></label><br>
-     <label>password：<input type="text" name="pw"></label><br>
+     <label>password：<input type="password" name="pw"></label><br>
      <input type="submit" value="送信">
     </fieldset>
   </div>

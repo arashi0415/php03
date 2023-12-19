@@ -35,14 +35,15 @@ $stmt2->bindParam(':email', $passNm, PDO::PARAM_STR);
 $status = $stmt2->execute();
 
 $val = $stmt2->fetch();
-
 // ログインの確認
 if ($val && password_verify($pass, $val['pass'])) {
     session_start();
     $_SESSION['user_name'] = $val['name'];
+    $_SESSION['id'] = $val['id'];
     header("Location: select.php");
     exit;
   }
+  
 //４．データ登録処理後
 if ($status == false) {
     //*** function化する！*****************

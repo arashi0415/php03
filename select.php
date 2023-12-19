@@ -22,12 +22,6 @@ $json = json_encode($values,JSON_UNESCAPED_UNICODE);
 session_start(); // セッションを開始
 // ... (funcs.phpやdb_conn()の読み込みなど)
 
-// セッション変数からユーザー名を取得
-$user_name = $_SESSION['user_name'];
-
-// ... (データベースからのデータ取得など)
-
-// ユーザー名を表示
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +41,8 @@ $user_name = $_SESSION['user_name'];
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php"><?php echo 'ようこそ、' . h($user_name) . 'さん！'?></a>
+      <p class="navbar-brand" href="index.php"><?php echo 'ようこそ、' . $_SESSION['user_name'] . 'さん！'?></p> 
+      <a class="navbar-brand" style="margin-left: 1100px;" href="logout.php">ログアウト</a>
       </div>
     </div>
   </nav>
@@ -59,35 +54,28 @@ $user_name = $_SESSION['user_name'];
         <table>
         <?php foreach($values as $v){ ?>
         <tr>
-          <td><a href="talk_<?=$v["id"]?>.php"><?=$v["name"]?></a></td>
+          <td>
+            <label>
+                    <a href="talk_<?=$v["id"]?>.php"><?=$v["name"]?></a>
+            </label>
+          </td>
         </tr>
       <?php } ?>
         </table>
     </div>
 </div>
 
-<?php
-                // 詳細ページ用のPHPファイルを生成
-                $id = h($v["id"]);
-                $talkContent = file_get_contents("inc.php");
-                file_put_contents("talk_{$id}.php", $talkContent);
-                ?>
-<!-- <div>
-    <div class="container jumbotron">
 
-      <table>
-      <?php foreach($values as $v){ ?>
-        <tr>
-          <td><?=h($v["id"])?></td>
-          <td><?=h($v["name"])?></td>
-          <td><a href="detail.php?id=<?=h($v["id"])?><td><?=h($v["name"])?></td>">リンク</a></td>
-          <td><a href="delete.php?id=<?=h($v["id"])?><td><?=h($v["name"])?></td>">リンク</a></td>
-        </tr>
-      <?php } ?>
-      </table>
+      <?php foreach ($values as $v) { ?>
+    <?php
+    $id = h($v["id"]);
+    $talkContent = file_get_contents("inc.php");
+    file_put_contents("talk_{$id}.php", $talkContent);
+    ?>
+<?php } ?>
 
   </div>
-</div> -->
+</div> 
 <!-- Main[End] -->
 
 
